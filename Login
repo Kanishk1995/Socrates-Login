@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Google Auth Demo</title>
+    <meta name="google-signin-client_id" content="856727641740-59us7hqhv8g99b9r9srhga3aq54gd02l.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+    <h1>SOCRATES</h1>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <div id="content"></div>
+    <button id="signout" onclick="signOut()" style="display:none">Sign Out</button>
+  </body>
+  <script>
+    function onSignIn(googleUser) {
+      console.log('User is '+ JSON.stringify(googleUser.getBasicProfile()))
+      var element = document.querySelector('#content')
+      element.innerText = googleUser.getBasicProfile().getName();
+      var image = document.createElement('img')
+      image.setAttribute('src',googleUser.getBasicProfile().getImageUrl().element.append(image))
+      image.setAttribute('src',googleUser.getBasicProfile().getImageUrl().element.append(image))
+	  var x = document.getElementbyId("signout");
+		if (x.style.display === "none") {
+			x.style.display = "block";
+		} else {
+			x.style.display = "none";
+		}
+    }
+                         
+    function signOut() {
+        gapi.auth2.getAuthInstance().signOut().then(function() {
+          console.log('user signed out')
+        })
+      }
+  </script>
+</html>
